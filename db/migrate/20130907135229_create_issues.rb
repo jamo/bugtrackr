@@ -3,7 +3,7 @@ class CreateIssues < ActiveRecord::Migration
     create_table :issues do |t|
       t.string :topic
       t.text :description
-      t.decimal :meetoo_count
+      t.integer :meetoo_count, default: 0
 
       t.timestamps
     end

@@ -2,8 +2,7 @@ class IssuesController < ApplicationController
   # GET /issues
   # GET /issues.json
   def index
-    @issues = Issue.all
-
+    @issues = Issue.order("meetoo_count").reverse_order
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @issues }
@@ -44,10 +43,10 @@ class IssuesController < ApplicationController
 
     respond_to do |format|
       if @issue.save
-        format.html { redirect_to @issue, notice: 'Issue was successfully created.' }
+        format.html { redirect_to issues_path, notice: 'Issue was successfully created.' }
         format.json { render json: @issue, status: :created, location: @issue }
       else
-        format.html { render action: "new" }
+        format.html { render action: "new", notice: "Topic cannot be empty" }
         format.json { render json: @issue.errors, status: :unprocessable_entity }
       end
     end
@@ -57,10 +56,12 @@ class IssuesController < ApplicationController
   # PUT /issues/1.json
   def update
     @issue = Issue.find(params[:id])
-
+    if params[:add_meetoo] = 1
+      @issue.meetoo_count = @issue.meetoo_count + 1
+    end
     respond_to do |format|
-      if @issue.update_attributes(params[:issue])
-        format.html { redirect_to @issue, notice: 'Issue was successfully updated.' }
+      if @issue.save!
+        format.html { redirect_to issues_path, notice: 'Mee too count was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
