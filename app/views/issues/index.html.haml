@@ -7,6 +7,6 @@
     %p= issue.description
     =form_for issue do |i|
       = i.hidden_field "add_meetoo", value: 1
-      = i.submit "Mee too"
+      = i.submit "Mee too", class: "btn default"
 
 = link_to "New Issue", new_issue_path, class: "btn btn-primary"
