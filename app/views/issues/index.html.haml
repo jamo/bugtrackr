@@ -2,7 +2,7 @@
 
 - @issues.each do |issue|
   .jumbotron
-    %h2= issue.topic
+    %h2= link_to issue.topic, issue_path(issue)
     %span.pull-right= issue.meetoo_count
     %p= issue.description
     =form_for issue do |i|

@@ -2,7 +2,7 @@ class IssuesController < ApplicationController
   # GET /issues
   # GET /issues.json
   def index
-    @issues = Issue.order("meetoo_count").reverse_order
+    @issues = Issue.current.order("meetoo_count").reverse_order
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @issues }
@@ -33,6 +33,7 @@ class IssuesController < ApplicationController
 
   # GET /issues/1/edit
   def edit
+    return
     @issue = Issue.find(params[:id])
   end
 
@@ -73,6 +74,7 @@ class IssuesController < ApplicationController
   # DELETE /issues/1
   # DELETE /issues/1.json
   def destroy
+    return
     @issue = Issue.find(params[:id])
     @issue.destroy
 
