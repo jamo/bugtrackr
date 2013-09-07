@@ -11,14 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130907135229) do
+ActiveRecord::Schema.define(:version => 20130907183137) do
 
   create_table "issues", :force => true do |t|
     t.string   "topic"
     t.text     "description"
     t.integer  "meetoo_count", :default => 0
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.boolean  "fixed",        :default => false
   end
 
 end
